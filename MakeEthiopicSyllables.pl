@@ -4,13 +4,14 @@
 # We use the "two rows of 8" perspective to map the syllables onto the
 # expected forms as per the various asundry Ethiopic locales...
 #
-open (GEEZ, ">Is/Y0.pl");
-open (KAIB, ">Is/Y1.pl");
-open (SALS, ">Is/Y2.pl");
-open (RABI, ">Is/Y3.pl");
-open (HAMS, ">Is/Y4.pl");
-open (SADS, ">Is/Y5.pl");
-open (SABI, ">Is/Y6.pl");
+open (GEEZ,   ">Is/Y0.pl");
+open (KAIB,   ">Is/Y1.pl");
+open (SALS,   ">Is/Y2.pl");
+open (RABI,   ">Is/Y3.pl");
+open (HAMS,   ">Is/Y4.pl");
+open (SADS,   ">Is/Y5.pl");
+open (SABI,   ">Is/Y6.pl");
+open (DIQALA, ">Is/Y7.pl");
 
 open (DIQALA_GEEZ, ">Is/Y8.pl");
 open (DIQALA_SALS, ">Is/Y10.pl");
@@ -20,14 +21,14 @@ open (DIQALA_SADS, ">Is/Y13.pl");  # though people outside of unicode.org
                                    #  might say DIQALA_KAIB...
 
 @fh = ( 
-	GEEZ,         KAIB,        SALS,        RABI,        HAMS,        SADS, SABI, 	empty,
+	GEEZ,         KAIB,        SALS,        RABI,        HAMS,        SADS, SABI, 	DIQALA,
 	DIQALA_GEEZ, empty, DIQALA_SALS, DIQALA_RABI, DIQALA_HAMS, DIQALA_SADS,
 );
 
 
 for $form (0..$#fh) {
 	$FILE = $fh[$form];
-	print $FILE "return <<'END'\n" if ($FILE ne "none");
+	print $FILE "return <<'END'\n" if ($FILE ne "empty");
 }
 
 
@@ -42,7 +43,7 @@ close (ETHIOPIC);
 
 for $form (0..$#fh) {
 	$FILE = $fh[$form];
-	print $FILE "END\n" if ($FILE ne "none");
+	print $FILE "END\n" if ($FILE ne "empty");
 }
 
 close (GEEZ);
